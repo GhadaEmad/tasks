@@ -118,7 +118,7 @@ icon:"assets/icons/Female.svg",
               ),
             ),
             SizedBox(height: 25,),
-            /// ToDo: custom this widget
+            
             Row(
               children: [
 
