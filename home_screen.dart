@@ -17,13 +17,13 @@ class _HomeScreenState extends State<HomeScreen> {
   int weight=1;
   int age=10;
   bool? isMale;
-
-
+int point=1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:AppColors.mainColor,
       appBar: AppBar(
+
         elevation: 10,
         backgroundColor: AppColors.secondaryColor,
         centerTitle:true,
@@ -118,115 +118,29 @@ icon:"assets/icons/Female.svg",
               ),
             ),
             SizedBox(height: 25,),
-            
+            /// ToDo: custom this widget
             Row(
               children: [
-
-
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 24),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: AppColors.secondaryColor
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Weight",style: TextStyle(
-                            fontSize: 20,
-                            color: AppColors.textGrayColor
-                        ),),
-                        Text("$weight",
-                          style: TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white
-                          ),),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                          children: [
-                            FloatingActionButton.small(onPressed: (){
-                              if(weight>1){
-                                setState(() {
-
-                                  weight--;
-                                });
-                              }
-                            },
-                              shape: CircleBorder(),
-                              backgroundColor: Colors.grey,
-                              child: Icon(Icons.remove,color: Colors.white,),
-                            ),
-                            FloatingActionButton.small(onPressed: (){
-                              setState(() {
-                                weight++;
-                              });
-                            },
-                              shape: CircleBorder(),
-                              backgroundColor: Colors.grey,
-                              child: Icon(Icons.add,color: Colors.white,),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                InformationContainer(text:"Weight",point:weight,incremint: (){
+                  setState(() {
+                    weight++;
+                  });
+                },
+                decremint: (){
+                  weight--;
+                },),
                 SizedBox(width: 10,),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 24),
-
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: AppColors.secondaryColor
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Age",style: TextStyle(
-                            fontSize: 20,
-                            color: AppColors.textGrayColor
-                        ),),
-                        Text("$age",
-                          style: TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white
-                          ),),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            FloatingActionButton.small(onPressed: (){
-                              if(age>0){
-                                setState(() {
-                                  age--;
-                                });
-                              }
-                            },
-                              shape: CircleBorder(),
-                              backgroundColor: Colors.grey,
-                              child: Icon(Icons.remove,color: Colors.white,),
-                            ),
-                            FloatingActionButton.small(onPressed: (){
-                              if(age<100){
-                                setState(() {
-                                  age++;
-                                });
-                              }
-                            },
-                              shape: CircleBorder(),
-                              backgroundColor: Colors.grey,
-                              child: Icon(Icons.add,color: Colors.white,),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                InformationContainer(text: "Age",point: age,
+                incremint: (){
+                  setState(() {
+                    age++;
+                  });
+                },
+                decremint: (){
+                  setState(() {
+                    age--;
+                  });
+                },)
               ],
             ),
             SizedBox(height: 10,),
@@ -240,7 +154,9 @@ icon:"assets/icons/Female.svg",
     ),
 
     onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>ResultScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>ResultScreen(weight:weight ,
+                height: sliderValue,
+              age: age,)));
             }, child: Text("Calculate"),),
           ],
         ),
