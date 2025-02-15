@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
+import 'home_screen.dart';
 class ResultScreen extends StatelessWidget {
   final int weight;
   final double height;
@@ -58,6 +59,7 @@ class ResultScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 24),
             child: Column(
+
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Your Result ", style: TextStyle(
@@ -89,9 +91,29 @@ class ResultScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             color: AppColors.textGrayColor
                         ),),
+
                     ],
+
                   ),
-                )
+
+                ),
+                SizedBox(height: 50,),
+                Center(
+                  child: ElevatedButton(
+
+                    style:ElevatedButton.styleFrom(
+                        backgroundColor: Colors.pink,
+                        fixedSize: Size(200,50),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)
+                        )
+                    ),
+
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>HomeScreen()));
+                    }, child: Text(" Re Calculate"),),
+                ),
+
               ],
             ),
           )
